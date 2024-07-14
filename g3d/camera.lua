@@ -33,6 +33,10 @@ function camera.getDirectionPitch()
     return fpsController.direction, fpsController.pitch
 end
 
+-- use this to return only camera pitch
+function camera.getPitch()
+    return fpsController.pitch
+
 -- convenient function to return the camera's normalized look vector
 function camera:getLookVector()
     local vx = camera.target[1] - camera.position[1]
