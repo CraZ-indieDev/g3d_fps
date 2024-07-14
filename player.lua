@@ -117,7 +117,15 @@ function Player:update()
 
     -- gravity
     self.speed[2] = math.min(self.speed[2] + gravity, maxFallSpeed)
-
+    
+    if love.keyboard.isDown("lshift") then
+        jump = 1/10
+		speed = 0.030
+    else
+	    jump = 1/15
+		speed = 0.010
+    end
+    
     if love.keyboard.isDown("w") then moveY = moveY - 1 end
     if love.keyboard.isDown("a") then moveX = moveX - 1 end
     if love.keyboard.isDown("s") then moveY = moveY + 1 end
@@ -194,6 +202,20 @@ function Player:interpolate(fraction)
     end
 
     g3d.camera.lookInDirection()
+end
+
+-- use this to return these variables all at once
+function Player:getSpeed()
+    return self.speed[1], self.speed[2], self.speed[3]
+end
+
+-- use this to specify a specific axis to return
+function Player:getSpeed(axis)
+    return self.speed[axis]
+end
+
+function Player:getPosition(axis)
+    return self.position[axis]
 end
 
 return Player
